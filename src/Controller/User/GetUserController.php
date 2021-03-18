@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Handler\User;
+namespace App\Controller\User;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class GetUserHandler extends UserHandler
+final class GetUserController extends AbstractUserController
 {
     public const ROUTE = 'api.user.get';
 
