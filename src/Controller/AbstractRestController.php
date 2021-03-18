@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class AbstractRestController extends AbstractController
+abstract class AbstractRestController extends AbstractController
 {
     public const ROUTE = null;
 
