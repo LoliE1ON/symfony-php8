@@ -2,14 +2,13 @@
 
 namespace App\Exception\User;
 
-use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserNotFoundException extends NotFoundHttpException
 {
-    #[Pure] public static function for(string $id): static
+    public static function for(string $id): self
     {
-        return new static(
+        return new self(
             sprintf('User %s not found', $id)
         );
     }
