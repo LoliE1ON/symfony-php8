@@ -20,12 +20,12 @@ final class RegistrationController extends AbstractRestController
     {
         $data = $request->toArray();
 
-        $createUserDto = new CreateUserValue(
+        $createUserValue = new CreateUserValue(
             $data['name'],
             $data['email']
         );
 
-        $user = $this->manager->create($createUserDto);
+        $user = $this->manager->create($createUserValue);
 
         return $this->respond($user)->setStatusCode(Response::HTTP_CREATED);
     }
