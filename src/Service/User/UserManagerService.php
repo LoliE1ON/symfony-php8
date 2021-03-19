@@ -16,8 +16,8 @@ class UserManagerService
     public function create(CreateUserValue $createUserValue): User
     {
         $user = (new User())
-            ->setName($createUserValue->name)
-            ->setEmail($createUserValue->email)
+            ->setName($createUserValue->getName())
+            ->setEmail($createUserValue->getEmail())
             ->setCreatedAt(new DateTime())
             ->setUpdatedAt(new DateTime());
 
