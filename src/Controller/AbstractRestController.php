@@ -23,10 +23,10 @@ abstract class AbstractRestController extends AbstractController
         return $this->json($data, Response::HTTP_OK, $headers, $context);
     }
 
-    protected function validate(ConstraintViolationListInterface $constraintViolationList): void
+    protected function handleValidationErrors(ConstraintViolationListInterface $constraintViolationList): void
     {
         if (!!$constraintViolationList->count()) {
-            throw ValidationFailedException::forErrors($constraintViolationList);
+            throw ValidationFailedException::forErrorList($constraintViolationList);
         }
     }
 }

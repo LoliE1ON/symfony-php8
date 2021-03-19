@@ -25,7 +25,7 @@ final class RegistrationController extends AbstractRestController
             $request->get('email')
         );
 
-        $this->validate(
+        $this->handleValidationErrors(
             $this->validator->validate($createUserValue)
         );
 
