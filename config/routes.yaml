@@ -3,6 +3,18 @@ registration:
     controller: App\Controller\RegistrationController
     methods: POST
 
-getUser:
+users:
+    path: /users
+    controller: App\Controller\User\GetListController
+
+user:
     path: /user/{id}
     controller: App\Controller\User\GetUserController
+
+userFiles:
+    path: /user/{id}/files
+    controller: App\Controller\File\GetListController
+
+file:
+    path: /file/{id}
+    controller: App\Controller\File\GetFileController

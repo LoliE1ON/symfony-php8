@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use DateTimeInterface;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -16,19 +18,19 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"api.user.get", "api.registration"})
+     * @Groups({"api.user.get", "api.registration", "api.user.list"})
      */
     private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api.user.get", "api.registration"})
+     * @Groups({"api.user.get", "api.registration", "api.user.list"})
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"api.user.get", "api.registration"})
+     * @Groups({"api.user.get", "api.registration", "api.user.list"})
      */
     private ?string $name;
 
@@ -43,6 +45,17 @@ class User
      */
     private DateTimeInterface $updated_at;
 
+    /**
+     * @OneToMany(targetEntity="File", mappedBy="user")
+     * @var ArrayCollection<File> $files
+     */
+    private ArrayCollection $files;
+
+    public function __construct()
+    {
+        $this->files = new ArrayCollection();
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -51,6 +64,14 @@ class User
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return ArrayCollection<File>
+     */
+    public function getFiles(): ArrayCollection
+    {
+        return $this->files;
     }
 
     public function setEmail(string $email): self
