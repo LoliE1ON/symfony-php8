@@ -16,25 +16,25 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"api.user.get"})
+     * @Groups({"api.user.get", "api.registration"})
      */
     private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api.user.get"})
+     * @Groups({"api.user.get", "api.registration"})
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"api.user.get"})
+     * @Groups({"api.user.get", "api.registration"})
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"api.user.get"})
+     * @Groups({"api.user.get", "api.registration"})
      */
     private DateTimeInterface $created_at;
 
