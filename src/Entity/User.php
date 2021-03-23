@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use DateTimeInterface;
@@ -47,9 +48,9 @@ class User
 
     /**
      * @OneToMany(targetEntity="File", mappedBy="user")
-     * @var ArrayCollection<File> $files
+     * @var Collection<File> $files
      */
-    private ArrayCollection $files;
+    private Collection $files;
 
     public function __construct()
     {
@@ -67,11 +68,30 @@ class User
     }
 
     /**
-     * @return ArrayCollection<File>
+     * @return File[]
      */
-    public function getFiles(): ArrayCollection
+    public function getFiles(): array
     {
-        return $this->files;
+        return $this->files->getValues();
+    }
+
+    public function addFile(File $file): self
+    {
+        $this->files->add($file);
+
+        return $this;
+    }
+
+    /**
+     * @param array<File> $files
+     */
+    public function addFiles(array $files): self
+    {
+        foreach ($files as $file) {
+            $this->addFile($file);
+        }
+
+        return $this;
     }
 
     public function setEmail(string $email): self
