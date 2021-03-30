@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-use App\Exception\ValidationFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 abstract class AbstractRestController extends AbstractController
 {
@@ -21,12 +19,5 @@ abstract class AbstractRestController extends AbstractController
         );
 
         return $this->json($data, Response::HTTP_OK, $headers, $context);
-    }
-
-    protected function handleValidationErrors(ConstraintViolationListInterface $constraintViolationList): void
-    {
-        if (!!$constraintViolationList->count()) {
-            throw ValidationFailedException::forErrorList($constraintViolationList);
-        }
     }
 }

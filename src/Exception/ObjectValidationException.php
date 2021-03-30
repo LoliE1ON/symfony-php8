@@ -4,9 +4,9 @@ namespace App\Exception;
 
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
-final class ValidationFailedException extends BadRequestException
+final class ObjectValidationException extends BadRequestException
 {
-    public static function forErrorList(mixed $errors): self
+    public static function forContext(mixed $errors): self
     {
         return new self($errors);
     }

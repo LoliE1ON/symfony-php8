@@ -25,10 +25,6 @@ final class RegistrationController extends AbstractRestController
             $request->get('email')
         );
 
-        $this->handleValidationErrors(
-            $this->validator->validate($createUserValue)
-        );
-
         $user = $this->manager->create($createUserValue);
 
         return $this->respond($user)->setStatusCode(Response::HTTP_CREATED);
